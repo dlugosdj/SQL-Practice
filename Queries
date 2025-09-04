@@ -1,0 +1,16 @@
+select rusher_player_name as "Player", sum(rushing_yards) as "YDS",
+CASE 
+    when rusher_player_name = 'S.Barkley' then sum(fumble) end as "FUM",
+    sum(fumble_lost) as "LST",
+CASE
+    when rusher_player_name = 'S.Barkley' then max(cast(rushing_yards as int)) end as 'LNG',
+CASE
+    when rusher_player_name = 'S.Barkley' then sum(cast(rushing_yards as int) >= 20) end as "BIG",
+CASE
+    when rusher_player_name = 'S.Barkley' then sum(cast(first_down_rush as int)) end as "FD",
+CASE
+    when rusher_player_name = 'S.Barkley' then sum(cast(rush_touchdown as int)) end as "TD"
+from Eagles
+where rusher_player_name = 'S.Barkley' and season_type = 'REG';
+
+
